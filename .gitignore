@@ -1,0 +1,4 @@
+.idea
+.docker/dbdata
+keycloak/.docker/dbdata
+.authentication-flow/node_modules
