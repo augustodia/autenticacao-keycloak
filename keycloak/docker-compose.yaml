@@ -16,8 +16,10 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      - keycloak_network
+    extra_hosts:
+      - 'host.docker.internal:172.17.0.1'
+#    networks:
+#      - keycloak_network
 
   db:
     image: mysql:8.0.30-debian
@@ -31,9 +33,11 @@ services:
       interval: 5s
       timeout: 10s
       retries: 3
-    networks:
-      - keycloak_network
-
-networks:
-  keycloak_network:
-    driver: bridge
+    extra_hosts:
+      - 'host.docker.internal:172.17.0.1'
+#    networks:
+#      - keycloak_network
+#
+#networks:
+#  keycloak_network:
+#    external: true

@@ -5,11 +5,15 @@ services:
     build: .
     ports:
       - "3000:3000"
+    command: bash "entrypoint.sh"
     volumes:
       - .:/home/node/app
-    networks:
-      - keycloak_network
+    extra_hosts:
+      - 'host.docker.internal:172.17.0.1'
 
-networks:
-  keycloak_network:
-    driver: bridge
+#    networks:
+#      - keycloak_network
+#
+#networks:
+#  keycloak_network:
+#    driver: bridge
