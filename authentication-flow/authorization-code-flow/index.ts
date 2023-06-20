@@ -22,12 +22,12 @@ app.get('/callback', async (req, res) => {
 
     const bodyParams = new URLSearchParams({
         client_id: 'fullcycle-client',
-        gran_type: 'authorization_code',
+        grant_type: 'authorization_code',
         code: req.query.code as string,
         redirect_uri: 'http://localhost:3000/callback',
     }).toString();
 
-    const url = `http://keycloak:8080/realms/fullcycle-realm/protocol/openid-connect/token`;
+    const url = `http://host.docker.internal:8080/realms/fullcycle-realm/protocol/openid-connect/token`;
 
     const response = await fetch(url, {
         method: 'POST',
