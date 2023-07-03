@@ -1,9 +1,11 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
+import {Admin} from './Admin.tsx';
 import {Login} from './Login.tsx';
 import {Logout} from './Logout.tsx';
 import {Callback} from './Callback.tsx';
-
+import {AuthProvider} from "./AuthProvider.tsx";
+import {PrivateRoute} from "./PrivateRoute.tsx";
 
 const router = createBrowserRouter([
     {
@@ -16,7 +18,11 @@ const router = createBrowserRouter([
     },
     {
         path: 'admin',
-        element: <div>Admin</div>
+        element: (
+            <PrivateRoute>
+                <Admin/>
+            </PrivateRoute>
+        )
     },
     {
         path: 'callback',
@@ -30,7 +36,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-      <RouterProvider router={router}/>
+      <AuthProvider>
+            <RouterProvider router={router}/>
+      </AuthProvider>
   )
 }
 
